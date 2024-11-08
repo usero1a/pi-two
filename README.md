@@ -25,5 +25,5 @@ Tags are a huge part of Pi-2, Just like HTML, But we've refurbished it to make i
 
  <a href="https://ibb.co/b6LnJ6f"><img src="https://i.ibb.co/TwR5LwC/Screenshot-2024-11-08-6-50-27-PM.png" alt="Screenshot-2024-11-08-6-50-27-PM" border="0"></a>
 
-# <html> Tag
+# <html Tags>
 This tag is straightforward this is where you add your html content.
