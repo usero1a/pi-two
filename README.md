@@ -1,4 +1,4 @@
-# Pi-two
+# Pi-Two
 Build Web Apps Easily with Python!
 
 Pi-two is a cutting-edge Python web framework designed to simplify the process of building dynamic, interactive web applications.By using http.server, Pi-two offers a lightweight, flexible approach by integrating HTML, CSS, and Python seamlessly within a single environment. The framework allows developers to work with a familiar syntax, making it easy to embed Python logic directly into web components without the need for complex server-side setups.
