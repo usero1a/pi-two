@@ -31,3 +31,6 @@ This tag is straightforward this is where you add your html content.
 # CSS Tags
 This tag give you the ability to style the html content.
 <a href="https://ibb.co/YT8c6XX"><img src="https://i.ibb.co/JF2vNqq/Screenshot-2024-11-08-6-49-54-PM.png" alt="Screenshot-2024-11-08-6-49-54-PM" border="0"></a>
+# Python Tags
+This new tag allows you to add python to your HTML, CSS project.
+<a href="https://ibb.co/sqwwWVR"><img src="https://i.ibb.co/Tt88Wg2/Screenshot-2024-11-08-6-50-33-PM.png" alt="Screenshot-2024-11-08-6-50-33-PM" border="0"></a><br /><a target='_blank' href='https://freeonlinedice.com/'>free dice</a><br />
