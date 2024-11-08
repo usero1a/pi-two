@@ -14,5 +14,5 @@ Lightweight and Fast: Minimalist architecture for high performance and rapid dev
 pi-two reimagines how we build web applications with Python, offering simplicity, speed, and power for developers who want to focus more on coding and less on configuration. Whether you're building a personal project or a large-scale application, pi-two provides the tools to make your web development process easier and more efficient.
 
  # Installation
- Make sure you have Node.js or npm installed on your computer
+ Make sure you have Node.js or npm installed on your computer, run the command: 
 ```npm install pi-two```
