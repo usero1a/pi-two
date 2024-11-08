@@ -15,4 +15,4 @@ pi-two reimagines how we build web applications with Python, offering simplicity
 
  # Installation
  Make sure you have Node.js or npm installed on your computer
- <h1>```npm install pi-two```</h1>
+```npm install pi-two```
