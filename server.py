@@ -1,33 +1,104 @@
-from flask import Flask, render_template_string  # type: ignore
-import re
+import http.server
+import socketserver
+import os
+from urllib.parse import urlparse
+import subprocess
+from pyx_parser import parse_pyx  # This is your custom parser function
 
-app = Flask(__name__)
+class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        parsed_url = urlparse(self.path)
+        # Serve .pyx files
+        if parsed_url.path.endswith(".pyx"):
+            self.handle_pyx(parsed_url.path)
+        else:
+            super().do_GET()
 
-def render_pyx(pyx_file_path):
-    with open(pyx_file_path, 'r') as f:
-        content = f.read()
+    def handle_pyx(self, path):
+        try:
+            # Set the path to the pyx file (could be in templates/ directory)
+            file_path = os.path.join('templates', path.lstrip('/'))
 
-    # Extract and separate HTML, CSS, and Python components
-    html_content = re.search(r"<html>(.*?)</html>", content, re.DOTALL).group(1)
-    css_content = re.search(r"<css>(.*?)</css>", content, re.DOTALL).group(1)
-    python_code = re.search(r"<python>(.*?)</python>", content, re.DOTALL).group(1)
+            # Check if file exists
+            if not os.path.exists(file_path):
+                self.send_response(404)
+                self.end_headers()
+                self.wfile.write(b"File not found")
+                return
 
-    # Execute Python code and get variables for the HTML rendering
-    exec_globals = {}
-    exec(python_code, exec_globals)
-    
-    # Render HTML with injected Python variables
-    template = f"""
-    <html>
-      <style>{css_content}</style>
-      {html_content}
-    </html>
-    """
-    return render_template_string(template, **exec_globals)
+            # Parse the .pyx file (you can adjust the parsing behavior as needed)
+            response_content = parse_pyx(file_path)
 
-@app.route('/')
-def home():
-    return render_pyx('index.pyx')
+            # Send HTTP response headers
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html")
+            self.end_headers()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+            # Send parsed content as response
+            self.wfile.write(response_content.encode('utf-8'))
+
+        except Exception as e:
+            self.send_response(500)
+            self.end_headers()
+            self.wfile.write(f"Error processing file: {str(e)}".encode('utf-8'))
+
+
+# Set the port and create the server
+PORT = 8000
+Handler = MyRequestHandler
+httpd = socketserver.TCPServer(("", PORT), Handler)
+
+print(f"Serving at port {PORT}")
+httpd.serve_forever()
+import http.server
+import socketserver
+import os
+from urllib.parse import urlparse
+import subprocess
+from pyx_parser import parse_pyx  # This is your custom parser function
+
+class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        parsed_url = urlparse(self.path)
+        # Serve .pyx files
+        if parsed_url.path.endswith(".pyx"):
+            self.handle_pyx(parsed_url.path)
+        else:
+            super().do_GET()
+
+    def handle_pyx(self, path):
+        try:
+            # Set the path to the pyx file (could be in templates/ directory)
+            file_path = os.path.join('templates', path.lstrip('/'))
+
+            # Check if file exists
+            if not os.path.exists(file_path):
+                self.send_response(404)
+                self.end_headers()
+                self.wfile.write(b"File not found")
+                return
+
+            # Parse the .pyx file (you can adjust the parsing behavior as needed)
+            response_content = parse_pyx(file_path)
+
+            # Send HTTP response headers
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html")
+            self.end_headers()
+
+            # Send parsed content as response
+            self.wfile.write(response_content.encode('utf-8'))
+
+        except Exception as e:
+            self.send_response(500)
+            self.end_headers()
+            self.wfile.write(f"Error processing file: {str(e)}".encode('utf-8'))
+
+
+# Set the port and create the server
+PORT = 8000
+Handler = MyRequestHandler
+httpd = socketserver.TCPServer(("", PORT), Handler)
+
+print(f"Serving at port {PORT}")
+httpd.serve_forever()
