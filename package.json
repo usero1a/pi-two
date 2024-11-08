@@ -1,0 +1,18 @@
+{
+  "name": "pi-two",
+  "version": "1.0.0",
+  "description": "Make Web Apps Easily, with Python!",
+  "main": "index.js",
+  "scripts": {
+    "test": "pi2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/usero1a/pi-two"
+  },
+  "keywords": [
+    "pi-two"
+  ],
+  "author": "Coder Acco",
+  "license": "ISC"
+}
