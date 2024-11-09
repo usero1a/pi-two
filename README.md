@@ -18,6 +18,10 @@ pi-two reimagines how we build web applications with Python, offering simplicity
  
 ```npm install pi-two```,
 
+Make sure your also have Python installed and run the command
+
+```pip install http.server```
+
 in your node_modules folder, Look for a pi-two folder, click it, and the magic begins!
 
 # Tags
