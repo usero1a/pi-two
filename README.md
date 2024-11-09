@@ -18,7 +18,7 @@ pi-two reimagines how we build web applications with Python, offering simplicity
  
 ```npm install pi-two```,
 
-Make sure your also have Python installed and run the command
+Make sure your also have Python installed and run the command:
 
 ```pip install http.server```
 
